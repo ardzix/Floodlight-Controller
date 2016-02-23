@@ -1,0 +1,15 @@
+ovs-vsctl [--OPTION] -- set port <port> qos=@newqos -- --id=@newqos create qos type=PRONTO_STRICT queues:<queueid>=@newqueue [queues:<queueid>=@newqueue1] -- --id=@newqueue create queue other-config:min-rate= <minrate> other-config:max-rate= <maxrate> [-- --id=@newqueue1 create queue other-config:min-rate= <minrate> other-config:max-rate= <maxrate>]
+
+ovs-vsctl - set port ge-1/1/3 qos=@newqos - --id=@newqos create qos type=PRONTO_STRICT queues:0=@newqueue queues:7=@newqueue1 - --id=@newqueue create queue other-config:min-rate=100000000 other-config:max-rate=100000000 - --id=@newqueue1 create queue other-config:min-rate=100000000 other-config:max-rate=100000000
+
+sudo ovs-vsctl  -- set port s4-eth2 qos=@defaultqos -- set port s4-eth1 qos=@defaultqos -- --id=@defaultqos create qos type=linux-htb other-config:max-rate=1000000 queues=0=@q0,1=@q1,2=@q2 -- --id=@q0 create queue other-config:max-rate=10000000 -- --id=@q1 create queue other-config:max-rate=5000000 -- --id=@q2 create queue other-config:max-rate=
+
+
+
+sudo ovs-vsctl  -- set port s2-eth9 qos=@defaultqos -- set port s2-eth1 qos=@defaultqos -- set port s2-eth6 qos=@defaultqos -- set port s2-eth2 qos=@defaultqos -- set port s2-eth7 qos=@defaultqos -- set port s2-eth5 qos=@defaultqos -- set port s2-eth8 qos=@defaultqos -- set port s2-eth3 qos=@defaultqos -- set port s2-eth4 qos=@defaultqos -- --id=@defaultqos create qos type=linux-htb other-config:max-rate=500000000 queues=0=@q0,1=@q1,2=@q2 -- --id=@q0 create queue other-config:max-rate=800000000 -- --id=@q1 create queue other-config:max-rate=30000000 -- --id=@q2 create queue other-config:max-rate=3000000
+
+ovs-vsctl [--OPTION] clear port <port> qos
+
+ovs-vsctl clear port ge-1/1/3 qos
+ovs-vsctl - --all destroy qos
+ovs-vsctl - --all destroy queue 

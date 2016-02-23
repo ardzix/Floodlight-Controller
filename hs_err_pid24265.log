@@ -1,0 +1,46 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 22282240 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2673), pid=24265, tid=3060448064
+#
+# JRE version:  (8.0_40-b25) (build )
+# Java VM: Java HotSpot(TM) Server VM (25.40-b25 mixed mode linux-x86 )
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0xb6507800):  JavaThread "Unknown thread" [_thread_in_vm, id=24269, stack(0xb665b000,0xb66ac000)]
+
+Stack: [0xb665b000,0xb66ac000],  sp=0xb66aab30,  free space=318k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x8c1fdf]  VMError::report_and_die()+0x16f
+V  [libjvm.so+0x3864a5]  report_vm_out_of_memory(char const*, int, unsigned int, VMErrorType, char const*)+0x55
+V  [libjvm.so+0x7468b6]  os::Linux::commit_memory_impl(char*, unsigned int, bool)+0xe6
+V  [libjvm.so+0x746cd8]  os::pd_commit_memory(char*, unsigned int, unsigned int, bool)+0x28
+V  [libjvm.so+0x7403fc]  os::commit_memory(char*, unsigned int, unsigned int, bool)+0x2c
+V  [libjvm.so+0x7aa6a8]  PSVirtualSpace::expand_by(unsigned int)+0x48
+V  [libjvm.so+0x7ab3fc]  PSYoungGen::initialize_virtual_space(ReservedSpace, unsigned int)+0x4c
+V  [libjvm.so+0x7abc48]  PSYoungGen::initialize(ReservedSpace, unsigned int)+0x28
+V  [libjvm.so+0x1a2f0a]  AdjoiningGenerations::AdjoiningGenerations(ReservedSpace, GenerationSizer*, unsigned int)+0x2ba
+V  [libjvm.so+0x76776f]  ParallelScavengeHeap::initialize()+0x19f
+V  [libjvm.so+0x88d56d]  Universe::initialize_heap()+0xcd
+V  [libjvm.so+0x88d8a3]  universe_init()+0x23
+V  [libjvm.so+0x4b90e5]  init_globals()+0x55
+V  [libjvm.so+0x872d6b]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x24b
+V  [libjvm.so+0x5333ac]  JNI_CreateJavaVM+0x5c
+C  [libjli.so+0x6e28]
